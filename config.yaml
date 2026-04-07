@@ -1,0 +1,27 @@
+# LLM 配置
+llm:
+  # API 密钥 (请替换为你的实际 API 密钥)
+  api_key: "your-api-key-here"
+  # API 基础地址
+  api_base: "https://api.deepseek.com/v1"
+  # 模型名称
+  model: "deepseek-chat"
+
+# Embedding 模型配置
+embedding:
+  # HuggingFace 模型名称
+  model_name: "BAAI/bge-small-zh-v1.5"
+
+# 向量数据库配置
+vector_store:
+  # Qdrant 主机地址
+  host: "localhost"
+  # Qdrant 端口
+  port: 6333
+  # 集合名称
+  collection_name: "library_docs"
+
+# 查询配置
+query:
+  # 召回最相关的分块数量
+  similarity_top_k: 2
