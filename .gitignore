@@ -1,0 +1,22 @@
+# 实际配置文件（包含敏感信息）
+config.yaml
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+rag-env/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# 数据和日志
+*.log
+data/

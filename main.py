@@ -10,6 +10,13 @@ from qdrant_client import QdrantClient
 # ----------------- 1. 加载配置文件 -----------------
 def load_config(config_path="config.yaml"):
     """从 YAML 配置文件加载配置"""
+    if not os.path.exists(config_path):
+        print(f"错误: 配置文件 '{config_path}' 不存在")
+        print(f"请复制配置文件示例:")
+        print(f"  cp config.yaml.example {config_path}")
+        print(f"然后编辑 {config_path}，填入你的实际配置（如 API 密钥等）")
+        exit(1)
+
     with open(config_path, "r", encoding="utf-8") as f:
         return yaml.safe_load(f)
 
