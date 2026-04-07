@@ -1,0 +1,54 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# UV
+.venv/
+# uv.lock  # 保留锁定文件用于Docker构建版本锁定
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Git
+.git/
+.gitignore
+
+# Docker
+Dockerfile
+docker-compose.yml
+.dockerignore
+
+# Data (容器运行时会挂载)
+data/*
+!data/.gitkeep
+
+# Config (容器运行时会挂载)
+config.yaml
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Qdrant storage (使用Docker volume)
+qdrant_storage/

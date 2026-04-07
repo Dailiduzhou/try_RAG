@@ -1,0 +1,39 @@
+services:
+  # Qdrant向量数据库服务
+  qdrant:
+    image: qdrant/qdrant:latest
+    container_name: try-rag-qdrant
+    ports:
+      - "6333:6333"    # REST API端口
+      - "6334:6334"    # gRPC端口
+    volumes:
+      - qdrant_storage:/qdrant/storage
+    environment:
+      - QDRANT__SERVICE__HTTP_PORT=6333
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:6333/healthz"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  # RAG应用服务
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: try-rag-app
+    depends_on:
+      qdrant:
+        condition: service_healthy
+    volumes:
+      - ./data:/app/data
+      - ./config.yaml:/app/config.yaml:ro
+    environment:
+      - PYTHONUNBUFFERED=1
+    restart: "no"  # 运行一次就退出，因为是批处理任务
+
+volumes:
+  qdrant_storage:
+    driver: local
